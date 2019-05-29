@@ -41,9 +41,7 @@ class MessageController extends Controller
 
         $users = auth()->user()->id;
 
-        $request;
-
-        return view('message.send_message', compact('messages_send', 'users', 'request'));
+        return view('message.send_message', compact('messages_send', 'users'));
 
 
     }
@@ -85,7 +83,7 @@ class MessageController extends Controller
 
         Message::create(request(['user_id', 'to_id', 'step_id', 'file_id', 'affair', 'message']));
 
-        return redirect('/operations');
+        return redirect('/operations/'.$operation->id);
     }
 
     /**
