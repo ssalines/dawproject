@@ -71,7 +71,7 @@ class MessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store( Request $request, Operation $operation)
+    public function store(Operation $operation, Request $request)
     {
         request()->validate([
 
@@ -81,9 +81,13 @@ class MessageController extends Controller
 
         ]);
 
+        $step = Step::find($request->step_id);
+
+        $operation = $step->operation_id;
+
         Message::create(request(['user_id', 'to_id', 'step_id', 'file_id', 'affair', 'message']));
 
-        return redirect('/operations/'.$operation->id);
+        return redirect('/operations/'.$operation);
     }
 
     /**
