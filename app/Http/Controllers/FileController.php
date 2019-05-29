@@ -78,7 +78,7 @@ class FileController extends Controller
         app(MessageController::class)->store($request);
 
         // Retornamos un redirección hacía operaciones
-        return redirect('/operations');
+        return redirect('/operations/'.$operation->id);
 
         }else{
 
@@ -87,7 +87,7 @@ class FileController extends Controller
             app(MessageController::class)->store($request);
 
             // Retornamos un redirección hacía operaciones
-            return redirect('/operations');
+            return redirect('/operations/'.$operation->id);
 
         }
     }
