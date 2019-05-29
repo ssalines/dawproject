@@ -29,15 +29,22 @@
 
     @csrf
     <label for="to_id">
-      Usuario:
+      Destinatario:
     </label>
     <select id="to_id" name="to_id" class="form-control role-select mb-2">
 
-      <option value="-">Selecciona un usuario</option>
+      <option value="-">Selecciona un destinatario</option>
       @foreach ($users as $user)
 
-      <option value="{{ $user->id }}">{{ $user->name }}</option>
-
+      @foreach ($participants as $participant)
+      @if($user->id == $participant->user_id)
+      @foreach ($roles as $role)
+      @if($participant->user_id == $role->id)
+      <option value="{{ $user->id }}">{{ $user->name }} - {{$role->role_name}}</option>
+      @endif
+      @endforeach
+      @endif
+      @endforeach
       @endforeach
 
     </select>

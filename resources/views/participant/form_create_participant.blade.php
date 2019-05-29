@@ -3,7 +3,7 @@
 
 @section('title')
 
-    Crear Participantes
+Crear Participantes
 
 @endsection
 
@@ -11,8 +11,8 @@
 
 @if($errors->any())
 <div class="container alert alert-danger">
-<h6>Fix the following errors:</h6>
-<br>
+  <h6>Fix the following errors:</h6>
+  <br>
   <ul>
 
     @foreach($errors->all() as $error)
@@ -26,45 +26,43 @@
   </ul>
 
 </div>
- @endif
+@endif
 
 <form method="post" class="container mt-5" action="/operations/{{$operation->id}}/participants">
 
-        @csrf
+  @csrf
 
-    <input type="text" class="input" id="participant_num" style="display:none;" value="{{$cont}}" name="participant_num">
+  <input type="text" class="input" id="participant_num" style="display:none;" value="{{$cont}}" name="participant_num">
 
-        @for ($i = 0; $i < $cont; $i++)
+  @for ($i = 0; $i < $cont; $i++) <select class="mt-2" name="participant_role[]">
 
-            <select class="mt-2" name="participant_role[]">
+    <option value="0">Select a role</option>
 
-                <option value="0">Select a role</option>
+    @foreach ($roles as $role)
 
-            @foreach ($roles as $role)
+    <option value="{{ $role->id }}">{{ $role->role_name }}</option>
 
-                <option value="{{ $role->id }}">{{ $role->role_name }}</option>
+    @endforeach
 
-            @endforeach
+    </select>
 
-        </select>
+    <select class="mt-2" name="participant_user[]">
 
-        <select class="mt-2" name="participant_user[]">
+      <option value="0">Select a user</option>
 
-                <option value="0">Select a user</option>
+      @foreach ($users as $user)
 
-            @foreach ($users as $user)
+      <option value="{{ $user->id }}">{{ $user->name }}</option>
 
-        <option value="{{ $user->id }}">{{ $user->name }}</option>
+      @endforeach
 
-            @endforeach
+    </select>
 
-        </select>
+    <br>
 
-        <br>
+    @endfor
 
-        @endfor
-
-    <button class="mt-2" type="submit">Enviar</button>
+    <button class="btn btn-primary mt-2" type="submit">Enviar</button>
 </form>
 
 

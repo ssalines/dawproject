@@ -3,13 +3,14 @@
 
 @section('title')
 
-    Crear Estudiantes
+Crear Estudiantes
 
 @endsection
 
 @section('content')
 
-<form method="post" action="/users/{{$user->id}}/classrooms/{{$classroom->id}}/students/create">
+<div class="container mt-4">
+  <form method="post" action="/users/{{$user->id}}/classrooms/{{$classroom->id}}/students/create">
 
     @csrf
 
@@ -23,6 +24,7 @@
     <input class="btn btn-primary" type="submit">
 
 
-</form>
+  </form>
+</div>
 
 @endsection

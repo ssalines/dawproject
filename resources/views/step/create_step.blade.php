@@ -4,14 +4,16 @@
 
 @section('content')
 
-<form class="form form-group" action="/operations/{{$operation->id}}/steps" method="post">
+<div class="container mt-4">
+  <form class="form form-group" action="/operations/{{$operation->id}}/steps" method="post">
 
     @csrf
 
+    <label class="label">Nombre del paso:</label>
     <input name="name" type="text" class="form-control">
-
     <input type="submit" class="btn btn-primary mt-2">
 
-</form>
+  </form>
+</div>
 
 @endsection

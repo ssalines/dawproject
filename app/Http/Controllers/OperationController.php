@@ -98,7 +98,19 @@ class OperationController extends Controller
 
         $op_messages = Message::orderBy('created_at', 'asc')->get();
 
-        return view('operation.show_operation', compact('find_operation', 'op_messages', 'steps', 'id', 'operations', 'user'));
+        $send = $message->user_id;
+
+        $to = $message->to_id;
+
+        $participants = Participant::all()->where('operation_id', $id);
+
+        $roles = Role::all();
+
+        $emisor = '';
+
+        $receptor = '';
+
+        return view('operation.show_operation', compact('find_operation', 'op_messages', 'steps', 'id', 'operations', 'user', 'send', 'to', 'participants', 'roles', 'emisor', 'receptor'));
     }
 
     /**

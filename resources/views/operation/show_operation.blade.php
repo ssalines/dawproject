@@ -38,8 +38,30 @@ Mostrar Operacion
 
           <a href="/operations/{{$id}}/steps/{{ $message->step_id }}/messages/{{$message->id}}"
             class="list-group-item list-group-item-action">
+            @foreach($participants as $participant)
+            @if($participant->user_id == $message->user_id)
+            @foreach($roles as $role)
+            @if($message->user_id == $role->id)
+            <span style="display:none;">{{$emisor = $role->role_name}}</span>
+            @endif
+            @endforeach
+            @endif
+            @if($participant->user_id == $message->to_id)
+            @foreach($roles as $role)
+            @if($message->to_id == $role->id)
+            <span style="display:none;">{{$receptor = $role->role_name}}</span>
+            @endif
+            @endforeach
+            @endif
+            @endforeach
+            <p class="mb-1">Emisor: <strong>{{$emisor}}</strong> </p>
+            <p class="mb-1">Receptor: <strong>{{$receptor}}</strong></p>
+            <hr>
             <div class="d-flex w-100 justify-content-between">
+
               <h5 class="mb-1">{{$message->affair}}</h5>
+
+
               <small>{{$message->created_at}}</small>
             </div>
             <p class="mb-1">{{$message->message}}

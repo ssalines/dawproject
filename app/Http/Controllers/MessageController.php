@@ -6,6 +6,8 @@ use App\Operation;
 use App\Message;
 use App\User;
 use App\Step;
+use App\Participant;
+use App\Role;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -58,7 +60,11 @@ class MessageController extends Controller
 
         $users = User::all();
 
-        return view('message.create_message', compact('users', 'step', 'user', 'operation'));
+        $participants = Participant::all();
+
+        $roles = Role::all();
+
+        return view('message.create_message', compact('users', 'step', 'user', 'operation', 'participants', 'roles'));
     }
 
     /**

@@ -10,8 +10,8 @@ Crear Operacion
 
 @if($errors->any())
 <div class="container alert alert-danger">
-<h6>Fix the following errors:</h6>
-<br>
+  <h6>Fix the following errors:</h6>
+  <br>
   <ul>
 
     @foreach($errors->all() as $error)
@@ -25,7 +25,7 @@ Crear Operacion
   </ul>
 
 </div>
- @endif
+@endif
 
 <form method="post" class="container mt-5" action="/operations">
 
@@ -156,21 +156,27 @@ Crear Operacion
     <button type="submit" class="btn btn-primary mt-3">Create Operation</button>
   </div>
 
-    <br>
+  <br>
 
 </form>
 
 <script>
 function validar_number(evt) {
 
-/*Variable que contiene el campo input de tipo number.*/
-var ch = String.fromCharCode(evt.which);
+  /*Variable que contiene el campo input de tipo number.*/
+  var ch = String.fromCharCode(evt.which);
 
+<<<<<<< HEAD
 /*Condición de que si el usuario inserta un caracter que no sea un numero del 0 hasta el 9 no
 se le dejara introducir-lo en el campo input de tipo number.*/
 if (!(/[0-9]/.test(ch))) {
+=======
+  /*Condición de que si el usuario inserta un caracter que no sea un numero del 0 hasta el 9 no 
+  se le dejara introducir-lo en el campo input de tipo number.*/
+  if (!(/[0-9]/.test(ch))) {
+>>>>>>> master
     evt.preventDefault();
-}
+  }
 
 }
 </script>
