@@ -10,9 +10,19 @@
                 @csrf
 
                     <input type="number" name="classroom_id" value="{{$classroom->id}}" style="display: none;">
+                    <input type="number" name="user_id" value="{{$user->id}}" style="display: none;">
+                    <input type="text" class="input" id="student_num" style="display:none;" value="{{$cont}}" name="student_num">
+
+
+
+                    @for ($i = 0; $i < $cont; $i++)
+
 
                     <label for="">Select User</label>
-                    <select name="user_id" class="form form-contol mt-2">
+                    <select name="users[]" class="form form-contol mt-2">
+
+                        <option value="0">Select user</option>
+
                         @foreach ($users as $usr)
 
                             @if ($usr->rol != 1)
@@ -22,7 +32,11 @@
                         @endforeach
                     </select>
 
-                    <input type="submit" class="btn btn-primary">
+                    <br>
+
+                    @endfor
+
+                    <input type="submit" class="btn btn-primary mt-2">
 
                 </form>
             </div>

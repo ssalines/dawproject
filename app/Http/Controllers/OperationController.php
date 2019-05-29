@@ -60,15 +60,17 @@ class OperationController extends Controller
      */
     public function store(Request $request)
     {
+
         request()->validate([
-
-            'title' => ['required', 'min:5']
-
+            'title' => ['required ', ' min:5'],
+            'first_step' => ['required ', ' min:1']
         ]);
 
         $operation = Operation::create(request(['title', 'user_id', 'operation_type', 'exp_name','exp_country', 'imp_name', 'imp_country', 'role', 'item', 'currency', 'price', 'transport', 'incoterm', 'payment', 'insurance_carrier', 'legislation', 'documents', 'language', 'contract']));
 
-        app(StepController::class)->create($operation);
+        $request->request->add(['name' => $request->first_step]);
+
+        app(StepController::class)->store($operation, $request);
 
         return redirect('/operations');
 
@@ -96,19 +98,7 @@ class OperationController extends Controller
 
         $op_messages = Message::orderBy('created_at', 'asc')->get();
 
-        $send = $message->user_id;
-
-        $to = $message->to_id;
-
-        $participants = Participant::all()->where('operation_id', $id);
-
-        $roles = Role::all();
-
-        $emisor = '';
-
-        $receptor = '';
-
-        return view('operation.show_operation', compact('find_operation', 'op_messages', 'steps', 'id', 'operations', 'user', 'send', 'to', 'participants', 'roles', 'emisor', 'receptor'));
+        return view('operation.show_operation', compact('find_operation', 'op_messages', 'steps', 'id', 'operations', 'user'));
     }
 
     /**

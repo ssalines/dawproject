@@ -27,16 +27,31 @@ class StudentController extends Controller
         return view('student.index_student', compact('student'));
     }
 
+    public function extra_form(User $user, Classroom $classroom)
+    {
+
+        return view('student.extra_form_student', compact('user', 'classroom'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(User $user, Classroom $classroom)
+    public function create(User $user, Classroom $classroom, Request $request)
     {
+
+        request()->validate([
+
+            'student_num' => 'required | min:1'
+
+        ]);
+
+        $cont = $request->student_num;
+
         $users = User::all();
 
-        return view('student.create_student', compact('classroom', 'users', 'user'));
+        return view('student.create_student', compact('classroom', 'users', 'user', 'cont'));
     }
 
     /**
@@ -47,11 +62,20 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'user_id' => 'required | not_in:0',
-        ]);
 
-        Student::create(request(['classroom_id', 'user_id']));
+        $cont = $request->student_num;
+
+        $users = $request->users;
+
+        for($i = 0; $i < $cont; $i++){
+
+            if($users[$i] != 0){
+
+                $request->request->add(['user_id' => (int)$users[$i]]);
+
+                Student::create(request(['classroom_id', 'user_id']));
+        }
+    }
 
         return redirect('/users/'.$request->user_id.'/classrooms');
     }

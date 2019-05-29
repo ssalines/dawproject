@@ -41,6 +41,10 @@ Route::group(['middleware' => 'profe'], function () {
     Route::get('/operations/create', 'OperationController@create');
     Route::get('/operations/{operation}/edit', 'OperationController@edit');
     Route::resource('/users/{user}/classrooms', 'ClassroomController');
+    Route::get('/users/{user}/classrooms/{classroom}/students', 'StudentController@index');
+    Route::get('/users/{user}/classrooms/{classroom}/students/form', 'StudentController@extra_form');
+    Route::post('/users/{user}/classrooms/{classroom}/students/create', 'StudentController@create');
+    Route::post('/users/{user}/classrooms/{classroom}/students', 'StudentController@store');
     Route::resource('/users/{user}/classrooms/{classroom}/students', 'StudentController');
     Route::post('/operations/{operation}/participants/edit', 'EditParticipantController@update_participant');
     Route::get('/operations/{operation}/participants/edit', 'EditParticipantController@edit_participant');

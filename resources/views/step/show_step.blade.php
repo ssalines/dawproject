@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title') Mostrar Mensaje @endsection
+@section('title') Mostrar Paso @endsection
 
 @section('content')
 
@@ -8,7 +8,7 @@
 
 <div class="container">
 
-  <h2>Detalles del paso</h2>
+<h2>Detalles del paso {{$step->name}}</h2>
 
   <br>
 

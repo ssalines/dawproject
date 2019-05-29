@@ -41,7 +41,6 @@ class ParticipantController extends Controller
      */
     public function extra_form(Operation $operation)
     {
-
         return view('participant.extra_form_participant', compact('operation'));
     }
 
@@ -78,14 +77,6 @@ class ParticipantController extends Controller
 
         $user = $request->participant_user;
 
-        // request()->validate([
-
-        //     'participant_role' => 'required | min:'.$cont,
-        //     'participant_role.*' => 'required | not_in:0',
-        //     'participant_user' => 'required | min:'.$cont,
-        //     'participant_user.*' => 'required | not_in:0'
-
-        // ]);
 
         $request->request->add(['operation_id' => $operation->id]);
 

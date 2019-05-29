@@ -16,9 +16,18 @@ class StepController extends Controller
      */
     public function create(Operation $operation)
     {
-        Step::create(['operation_id' => $operation->id]);
 
-        return back();
+        return view('step.create_step', compact('operation'));
+
+    }
+
+    public function store(Operation $operation, Request $request)
+    {
+
+        Step::create(['operation_id' => $operation->id, 'name' => $request->name]);
+
+        return redirect('/operations/'.$operation->id);
+
     }
 
     /**

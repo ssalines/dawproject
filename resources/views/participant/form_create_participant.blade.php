@@ -3,7 +3,7 @@
 
 @section('title')
 
-Crear Participantes
+    Crear Participantes
 
 @endsection
 
@@ -11,8 +11,8 @@ Crear Participantes
 
 @if($errors->any())
 <div class="container alert alert-danger">
-  <h6>Fix the following errors:</h6>
-  <br>
+<h6>Fix the following errors:</h6>
+<br>
   <ul>
 
     @foreach($errors->all() as $error)
@@ -26,43 +26,45 @@ Crear Participantes
   </ul>
 
 </div>
-@endif
+ @endif
 
 <form method="post" class="container mt-5" action="/operations/{{$operation->id}}/participants">
 
-  @csrf
+        @csrf
 
-  <input type="text" class="input" id="participant_num" style="display:none;" value="{{$cont}}" name="participant_num">
+    <input type="text" class="input" id="participant_num" style="display:none;" value="{{$cont}}" name="participant_num">
 
-  @for ($i = 0; $i < $cont; $i++) <select class="mt-2" name="participant_role[]">
+        @for ($i = 0; $i < $cont; $i++)
 
-    <option value="0">Select a role</option>
+            <select class="mt-2" name="participant_role[]">
 
-    @foreach ($roles as $role)
+                <option value="0">Select a role</option>
 
-    <option value="{{ $role->id }}">{{ $role->role_name }}</option>
+            @foreach ($roles as $role)
 
-    @endforeach
+                <option value="{{ $role->id }}">{{ $role->role_name }}</option>
 
-    </select>
+            @endforeach
 
-    <select class="mt-2" name="participant_user[]">
+        </select>
 
-      <option value="0">Select a user</option>
+        <select class="mt-2" name="participant_user[]">
 
-      @foreach ($users as $user)
+                <option value="0">Select a user</option>
 
-      <option value="{{ $user->id }}">{{ $user->name }}</option>
+            @foreach ($users as $user)
 
-      @endforeach
+        <option value="{{ $user->id }}">{{ $user->name }}</option>
 
-    </select>
+            @endforeach
 
-    <br>
+        </select>
 
-    @endfor
+        <br>
 
-    <button class="btn btn-primary mt-2" type="submit">Enviar</button>
+        @endfor
+
+    <button class="mt-2" type="submit">Enviar</button>
 </form>
 
 

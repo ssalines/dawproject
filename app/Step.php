@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Step extends Model
 {
 
-    protected $fillable = ['operation_id'];
+    protected $fillable = ['operation_id', 'name'];
 
     public function messages(){
 

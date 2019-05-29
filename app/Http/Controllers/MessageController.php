@@ -6,8 +6,6 @@ use App\Operation;
 use App\Message;
 use App\User;
 use App\Step;
-use App\Participant;
-use App\Role;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -60,11 +58,7 @@ class MessageController extends Controller
 
         $users = User::all();
 
-        $participants = Participant::all();
-
-        $roles = Role::all();
-
-        return view('message.create_message', compact('users', 'step', 'user', 'operation', 'participants', 'roles'));
+        return view('message.create_message', compact('users', 'step', 'user', 'operation'));
     }
 
     /**
@@ -79,7 +73,7 @@ class MessageController extends Controller
 
             'to_id' => ['required', 'not_in:0'],
             'affair' => ['required', 'min:5'],
-            'message' =>['required', 'min:5']
+            'message' =>['required', 'min:2']
 
         ]);
 
@@ -138,7 +132,7 @@ class MessageController extends Controller
 
         $message->update(request(['affair', 'message']));
 
-        return redirect('/operations');
+        return redirect('/operations/'.$operation->id);
     }
 
     /**

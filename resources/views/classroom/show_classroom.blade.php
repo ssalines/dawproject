@@ -23,6 +23,7 @@
 
     <div class="container mt-3">
         <a class="btn btn-success" href="/users/{{$user->id}}/classrooms/{{$classroom->id}}/students/form">Añadir Alumnos</a>
+        
         <a class="btn btn-primary" onclick="window.history.back()">Volver atras</a>
     </div>
 

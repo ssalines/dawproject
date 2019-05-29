@@ -72,28 +72,6 @@ class ClassroomController extends Controller
         return view('classroom.show_classroom', compact('classroom', 'user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Student $student)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Classroom $classroom)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
